@@ -38,9 +38,6 @@ func main() {
 		if err := c.Bind(req); err != nil {
 			return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 		}
-		if _, err := strconv.Atoi(req.Numbers[len(req.Numbers):]); err != nil {
-			return echo.NewHTTPError(http.StatusBadRequest, "строка дожна заканчиваться числом")
-		}
 		re := regexp.MustCompile("[0-9]+")
 		numbers := re.FindAllString(req.Numbers, -1)
 		if len(numbers) == 0 || len(numbers) == 1 {
